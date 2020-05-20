@@ -12,7 +12,7 @@ Or add it to your `Gemfile` and run `bundle install`.
 
 ## Documentation
 
-See the API docs [here](https://www.pexels.com/api/documentation/?language=js)
+See the API docs [here](https://www.pexels.com/api/documentation/?language=rb)
 
 
 ## Basic usage
