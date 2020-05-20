@@ -44,7 +44,7 @@ class TestVideo < Minitest::Test
   end
 
   def test_get_video
-    video = @client.videos.get(@video.id)
+    video = @client.videos[@video.id]
 
     assert video.is_a? Pexels::Video
 
@@ -66,7 +66,7 @@ class TestVideo < Minitest::Test
   end
 
   def test_invalid_get_video
-    video = @client.videos.get('this-is-not-a-valid-id')
+    video = @client.videos['this-is-not-a-valid-id']
     raise 'This should not happen'
     rescue StandardError => exception
       assert exception.is_a? Pexels::APIError

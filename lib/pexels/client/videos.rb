@@ -4,7 +4,7 @@ class Pexels::Client::Videos
     @client = client
   end
 
-  def get(id)
+  def [](id)
     response = @client.request("/videos/videos/#{id}")
     Pexels::Video.new(response)
   end

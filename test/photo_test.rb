@@ -46,7 +46,7 @@ class TestPhoto < Minitest::Test
   end
 
   def test_get_photo
-    photo = @client.photos.get(@photo.id)
+    photo = @client.photos[@photo.id]
 
     assert photo.is_a? Pexels::Photo
 
@@ -61,7 +61,7 @@ class TestPhoto < Minitest::Test
   end
 
   def test_invalid_get_photo
-    photo = @client.photos.get('this-is-not-a-valid-id')
+    photo = @client.photos['this-is-not-a-valid-id']
     raise 'This should not happen'
     rescue StandardError => exception
       assert exception.is_a? Pexels::APIError

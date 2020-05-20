@@ -4,7 +4,7 @@ class Pexels::Client::Photos
     @client = client
   end
 
-  def get(id)
+  def [](id)
     response = @client.request("/v1/photos/#{id}")
     Pexels::Photo.new(response)
   end

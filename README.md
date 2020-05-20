@@ -17,13 +17,46 @@ See the API docs [here](https://www.pexels.com/api/documentation/?language=js)
 
 ## Basic usage
 
+### Create a client
+
 ```ruby
-client = Pexels::Client.new('your-access-key') #=> If you don't specify one, the environment variable PEXELS_API_KEY is used by default
+# If you don't specify one, the environment variable PEXELS_API_KEY is used by default
+client = Pexels::Client.new('your-access-key')
+```
 
+### Search for photos
+
+```ruby
 client.photos.search('Cloud')
-client.photos.curated
+```
 
+### Find a specific photo
+
+```ruby
+client.photos[2014422]
+```
+
+### Browse curated photos
+
+```ruby
+client.photos.curated
+```
+
+### Search for videos
+
+```ruby
 client.videos.search('waves')
+```
+
+### Find a specific photo
+
+```ruby
+client.videos[2014422]
+```
+
+### Browse popular videos
+
+```ruby
 client.videos.popular
 ```
 
