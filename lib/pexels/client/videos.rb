@@ -8,6 +8,7 @@ class Pexels::Client::Videos
     response = @client.request("/videos/videos/#{id}")
     Pexels::Video.new(response)
   end
+  alias_method :find, :[]
 
   def search(query, per_page: 15, page: 1)
     response = @client.request(

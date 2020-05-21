@@ -8,6 +8,7 @@ class Pexels::Client::Photos
     response = @client.request("/v1/photos/#{id}")
     Pexels::Photo.new(response)
   end
+  alias_method :find, :[]
 
   def search(query, per_page: 15, page: 1, locale: 'en-US')
     response = @client.request(

@@ -33,7 +33,7 @@ client.photos.search('Cloud')
 ### Find a specific photo
 
 ```ruby
-client.photos[2014422]
+client.photos[2014422] || client.photos.find(2014422)
 ```
 
 ### Browse curated photos
@@ -51,7 +51,7 @@ client.videos.search('waves')
 ### Find a specific photo
 
 ```ruby
-client.videos[2014422]
+client.videos[2014422] || client.videos.find(2014422)
 ```
 
 ### Browse popular videos
