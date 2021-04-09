@@ -70,10 +70,6 @@ class TestVideo < Minitest::Test
     raise 'This should not happen'
     rescue StandardError => exception
       assert exception.is_a? Pexels::APIError
-      #assert_equal exception.message, 'Not Found'
-      #
-      ## This is incorrect  behavior from the API, which we should change
-      #  once its fixed.
-      assert_equal exception.message, 'Internal Server Error'
+      assert_equal exception.message, 'Not Found'
   end
 end
