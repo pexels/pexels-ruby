@@ -1,8 +1,9 @@
 module Pexels
-  @api_base_url = 'https://api.pexels.com'
+  @api_base_url = ENV['PEXELS_API_BASE_URL'] || 'https://api.pexels.com'
+  @api_version = ENV['PEXELS_API_VERSION'] || 'v1'
 
   class << self
-    attr_reader :api_base_url
+    attr_reader :api_base_url, :api_version
   end
 end
 

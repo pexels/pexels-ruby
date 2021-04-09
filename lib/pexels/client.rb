@@ -18,9 +18,12 @@ class Pexels::Client
   end
 
   def request(path, method: 'GET', params: {})
+    url = File.join(Pexels.api_base_url, path)
+    puts "Requesting #{url}" if ENV['DEBUG']
+
     results = Requests.request(
       method,
-      "#{Pexels.api_base_url}#{path}",
+      url,
       params: params,
       headers: {
         'Authorization' => api_key
