@@ -20,7 +20,7 @@ class Pexels::Client::Videos
       }
     )
 
-    Pexels::Response.new(response)
+    Pexels::VideoSet.new(response)
   end
 
   def popular(per_page: 15, page: 1)
@@ -32,6 +32,6 @@ class Pexels::Client::Videos
       }
     )
 
-    Pexels::Response.new(response)
+    Pexels::VideoSet.new(response)
   end
 end

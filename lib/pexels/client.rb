@@ -16,6 +16,10 @@ class Pexels::Client
     @videos ||= Pexels::Client::Videos.new(self)
   end
 
+  def collections
+    @collections ||= Pexels::Client::Collections.new(self)
+  end
+
   def request(path, method: 'GET', params: {})
     url = File.join(Pexels.api_base_url, path)
     headers = {

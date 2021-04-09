@@ -21,7 +21,7 @@ class Pexels::Client::Photos
       }
     )
 
-    Pexels::Response.new(response)
+    Pexels::PhotoSet.new(response)
   end
 
   def curated(per_page: 15, page: 1)
@@ -33,6 +33,6 @@ class Pexels::Client::Photos
       }
     )
 
-    Pexels::Response.new(response)
+    Pexels::PhotoSet.new(response)
   end
 end
