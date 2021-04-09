@@ -5,20 +5,20 @@ class TestVideo < Minitest::Test
 
   def setup
     @client = Pexels::Client.new(ENV.fetch('PEXELS_API_KEY'))
-    @video = @client.videos.search('test', per_page: 1).videos.first
+    @video = @client.videos.search('test', per_page: 1).first
   end
 
   def test_successful_searches
     search_result = @client.videos.search('test')
 
-    assert search_result.is_a? Pexels::Response
+    assert search_result.is_a? Pexels::VideoSet
     assert search_result.total_results.is_a? Integer
     assert_equal search_result.per_page, 15
     assert_equal search_result.page, 1
 
     assert search_result.videos.is_a? Array
     assert search_result.videos.any?
-    assert search_result.videos.first.is_a? Pexels::Video
+    assert search_result.first.is_a? Pexels::Video
 
     search_result_with_params = @client.videos.search('test', per_page: 1, page: 2)
     assert_equal search_result_with_params.per_page, 1
@@ -29,13 +29,13 @@ class TestVideo < Minitest::Test
   def test_popular_videos
     search_result = @client.videos.popular
 
-    assert search_result.is_a? Pexels::Response
+    assert search_result.is_a? Pexels::VideoSet
     assert_equal search_result.per_page, 15
     assert_equal search_result.page, 1
 
     assert search_result.videos.is_a? Array
     assert search_result.videos.any?
-    assert search_result.videos.first.is_a? Pexels::Video
+    assert search_result.first.is_a? Pexels::Video
 
     search_result_with_params = @client.videos.popular(per_page: 1, page: 2)
     assert_equal search_result_with_params.per_page, 1
