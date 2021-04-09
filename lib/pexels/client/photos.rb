@@ -5,14 +5,14 @@ class Pexels::Client::Photos
   end
 
   def [](id)
-    response = @client.request("/v1/photos/#{id}")
+    response = @client.request("#{Pexels.api_version}/photos/#{id}")
     Pexels::Photo.new(response)
   end
   alias_method :find, :[]
 
   def search(query, per_page: 15, page: 1, locale: 'en-US')
     response = @client.request(
-      '/v1/search',
+      "#{Pexels.api_version}/search",
       params: {
         query: query,
         per_page: per_page,
@@ -26,7 +26,7 @@ class Pexels::Client::Photos
 
   def curated(per_page: 15, page: 1)
     response = @client.request(
-      '/v1/curated',
+      "#{Pexels.api_version}/curated",
       params: {
         per_page: per_page,
         page: page,
