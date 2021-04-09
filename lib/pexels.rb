@@ -4,6 +4,21 @@ module Pexels
 
   class << self
     attr_reader :api_base_url, :api_version
+
+    # Local headers can be defined inside a `.headers` file at the project root,
+    # with the following format:
+    #
+    # header1=value
+    # header2=value
+    # etc.
+    #
+    def local_headers
+      @local_headers ||= if File.exist?('.headers')
+          File.read('.headers').split.to_h { |header| header.split('=') }
+        else
+          {}
+        end
+    end
   end
 end
 

@@ -1,3 +1,4 @@
 .gems.up.to.date
 .env
 *.gem
+.headers
