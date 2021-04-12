@@ -5,7 +5,7 @@ class Pexels::Client::Collections
 
   def all(per_page: 15, page: 1)
     response = @client.request(
-      '/collections',
+      "#{Pexels.api_version}/collections",
       params: {
         per_page: per_page,
         page: page
@@ -16,7 +16,7 @@ class Pexels::Client::Collections
 
   def [](id, type: nil, per_page: 15, page: 1)
     response = @client.request(
-      "/collections/#{id}",
+      "#{Pexels.api_version}/collections/#{id}",
       params: {
         per_page: per_page,
         page: page,
