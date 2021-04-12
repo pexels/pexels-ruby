@@ -11,5 +11,7 @@ Gem::Specification.new do |s|
   s.license     = 'MIT'
   s.files       = `git ls-files`.split("\n")
 
+  s.required_ruby_version = '>= 2.4.0'
+
   s.add_dependency('requests', '~> 1.0.2')
 end
