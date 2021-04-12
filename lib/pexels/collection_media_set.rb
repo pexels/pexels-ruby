@@ -5,7 +5,7 @@ module Pexels
 
     attr_reader :id
 
-    def initialize(attrs)
+    def initialize(response)
       super
       @id = attrs.fetch('id')
       @data = attrs.fetch('media', []).map do |attrs|

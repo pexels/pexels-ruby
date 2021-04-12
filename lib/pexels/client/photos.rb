@@ -6,7 +6,7 @@ class Pexels::Client::Photos
 
   def [](id)
     response = @client.request("#{Pexels.api_version}/photos/#{id}")
-    Pexels::Photo.new(response)
+    Pexels::Photo.new(response.body)
   end
   alias_method :find, :[]
 

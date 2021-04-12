@@ -15,7 +15,7 @@ class TestClient < Minitest::Test
     assert remaining >= 0
 
     @client.photos.search('test')
-    assert_equal remaining, @client.ratelimit_remaining + 1
+    assert_equal @client.ratelimit_remaining, remaining - 1
   end
 
   def test_exceptions
@@ -26,7 +26,7 @@ class TestClient < Minitest::Test
         @client.photos.search('test')
         raise 'this shouldnt happen'
       rescue StandardError => exception
-        assert exception.is_a? Pexels::APIError
+        assert_kind_of Pexels::APIError, exception
         assert exception.message != 'this shouldnt happen'
       end
     end
