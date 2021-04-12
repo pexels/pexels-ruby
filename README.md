@@ -87,6 +87,33 @@ client.collections['collection-id', type: 'photos'].media
 client.collections['collection-id', type: 'videos'].media
 ```
 
+## Rate Limiting
+
+After performing a request, you can access your remaining rate limit via the client.
+
+```ruby
+client.ratelimit_remaining
+```
+
+## Pagination
+
+Requests that return multiple objects are paginated. You can pass in `page` and `per_page` options to these requests to get a specific page. You can also access the total number of results by accessing `total_results` on the response. 
+
+Note: The Pexels API returns a maximum of 80 records for one request.
+
+```ruby
+response = client.photos.search('dog', page: 2, per_page: 50)
+response.total_results #=> 1000
+```
+
+If there are further pages, you can also paginate through the API client:
+
+```ruby
+response = client.photos.search('dog', page: 2, per_page: 50)
+response.prev_page # queries page 1
+response.next_page # queries page 3
+```
+
 ## Running the test suite
 
 You'll need your own API key to run the test suite, you can get one on the [Pexels API Key management page](https://www.pexels.com/api/new/)

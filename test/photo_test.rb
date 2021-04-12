@@ -11,9 +11,9 @@ class TestPhoto < Minitest::Test
   def test_successful_searches
     search_result = @client.photos.search('test')
 
-    assert search_result.is_a? Pexels::PhotoSet
-    assert search_result.next_page.is_a? String
-    assert search_result.total_results.is_a? Integer
+    assert_kind_of Pexels::PhotoSet, search_result
+    assert_kind_of Pexels::PhotoSet, search_result.next_page
+    assert_kind_of Integer, search_result.total_results
     assert_equal search_result.per_page, 15
     assert_equal search_result.page, 1
 
@@ -25,13 +25,14 @@ class TestPhoto < Minitest::Test
     assert_equal search_result_with_params.per_page, 1
     assert_equal search_result_with_params.page, 2
     assert_equal search_result_with_params.photos.length, 1
+    assert_kind_of Pexels::PhotoSet, search_result_with_params.prev_page
   end
 
   def test_curated_photos
     search_result = @client.photos.curated
 
-    assert search_result.is_a? Pexels::PhotoSet
-    assert search_result.next_page.is_a? String
+    assert_kind_of Pexels::PhotoSet, search_result
+    assert_kind_of Pexels::PhotoSet, search_result.next_page
     assert_equal search_result.per_page, 15
     assert_equal search_result.page, 1
 
@@ -43,6 +44,7 @@ class TestPhoto < Minitest::Test
     assert_equal search_result_with_params.per_page, 1
     assert_equal search_result_with_params.page, 2
     assert_equal search_result_with_params.photos.length, 1
+    assert_kind_of Pexels::PhotoSet, search_result_with_params.prev_page
   end
 
   def test_get_photo
