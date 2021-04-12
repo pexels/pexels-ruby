@@ -10,7 +10,10 @@ module Pexels
 
     private :data
 
-    def initialize(attrs)
+    def initialize(response)
+      @response = response
+      @attrs = @response.body
+
       @total_results = attrs.fetch('total_results', nil)
       @page = attrs.fetch('page')
       @per_page = attrs.fetch('per_page')

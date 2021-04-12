@@ -3,7 +3,7 @@ module Pexels
     alias_method :photos, :data
     public :photos
 
-    def initialize(attrs)
+    def initialize(response)
       super
       @data = attrs.fetch('photos', []).map { |attrs| Pexels::Photo.new(attrs) }
 

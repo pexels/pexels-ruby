@@ -23,6 +23,8 @@ module Pexels
 end
 
 require_relative 'pexels/client'
+require_relative 'pexels/client/request'
+require_relative 'pexels/client/response'
 require_relative 'pexels/client/collections'
 require_relative 'pexels/client/photos'
 require_relative 'pexels/client/videos'

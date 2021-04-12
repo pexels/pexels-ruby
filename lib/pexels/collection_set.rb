@@ -3,7 +3,7 @@ module Pexels
     alias_method :collections, :data
     public :collections
 
-    def initialize(attrs)
+    def initialize(response)
       super
       @data = attrs.fetch('collections', []).map { |attrs| Pexels::Collection.new(attrs) }
     end

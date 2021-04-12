@@ -6,7 +6,7 @@ class Pexels::Client::Videos
 
   def [](id)
     response = @client.request("/videos/videos/#{id}")
-    Pexels::Video.new(response)
+    Pexels::Video.new(response.body)
   end
   alias_method :find, :[]
 
