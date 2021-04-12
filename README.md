@@ -104,6 +104,7 @@ Note: The Pexels API returns a maximum of 80 records for one request.
 ```ruby
 response = client.photos.search('dog', page: 2, per_page: 50)
 response.total_results #=> 1000
+response.total_pages #= 20
 ```
 
 If there are further pages, you can also paginate through the API client:

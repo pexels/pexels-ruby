@@ -22,6 +22,10 @@ module Pexels
       @next_page = attrs.fetch('next_page', nil)
     end
 
+    def total_pages
+      total_results.fdiv(per_page).ceil
+    end
+
     def each(&block)
       if block_given?
         data.each(&block)
