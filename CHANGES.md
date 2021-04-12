@@ -1,5 +1,12 @@
 # Change log
 
+## 0.2.0
+* Fixed incorrect URL for collections endpoints.
+* Added pagination methods `next_page` and `prev_page` to `PaginatedResponse`.
+* Added `total_pages` to `PaginatedResponse`.
+* Extracted `Request` and `Response` objects for reusability.
+* Added `Pexels/Ruby` `User-Agent` header to requests.
+
 ## 0.1.0
 * Add support for returning collections belonging to the API user.
 * Add support for returning media from a collection.
