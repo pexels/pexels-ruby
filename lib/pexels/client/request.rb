@@ -38,7 +38,8 @@ module Pexels
 
       def headers
         @headers = {
-          'Authorization' => api_key
+          'Authorization' => api_key,
+          'User-Agent' => "Pexels/Ruby (#{Pexels::VERSION})"
         }.merge(Pexels.local_headers)
       end
 
