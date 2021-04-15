@@ -1,5 +1,8 @@
 # Change log
 
+## 0.2.1
+* Added `type`, `photo?` and `video?` helper methods to `Photo` and `Video` classes.
+
 ## 0.2.0
 * Fixed incorrect URL for collections endpoints.
 * Added pagination methods `next_page` and `prev_page` to `PaginatedResponse`.
