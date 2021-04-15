@@ -57,6 +57,10 @@ class TestVideo < Minitest::Test
     assert_equal video.height, @video.height
     assert_equal video.url, @video.url
 
+    assert video.video?
+    assert_equal video.type, 'Video'
+    refute video.photo?
+
     assert video.user.is_a?(Pexels::User)
     assert_equal video.user.name, @video.user.name
     assert_equal video.user.url, @video.user.url

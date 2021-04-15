@@ -22,4 +22,16 @@ class Pexels::Photo
   rescue KeyError => exception
     raise Pexels::MalformedAPIResponseError.new(exception)
   end
+
+  def type
+    'Photo'
+  end
+
+  def photo?
+    true
+  end
+
+  def video?
+    false
+  end
 end
