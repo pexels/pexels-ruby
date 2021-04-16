@@ -74,10 +74,9 @@ class TestCollections < Minitest::Test
   end
 
   def test_invalid_get_collection
-    @client.collections['this-is-not-a-valid-id']
-    raise 'This should not happen'
-  rescue StandardError => exception
-    assert exception.is_a? Pexels::APIError
-    assert_equal exception.message, 'Not Found'
+    error = assert_raises(Pexels::APIError) do
+      @client.collections['this-is-not-a-valid-id']
+    end
+    assert error.message, 'Not Found'
   end
 end

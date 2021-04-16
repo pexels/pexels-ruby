@@ -74,10 +74,29 @@ class TestVideo < Minitest::Test
   end
 
   def test_invalid_get_video
-    video = @client.videos['this-is-not-a-valid-id']
-    raise 'This should not happen'
-    rescue StandardError => exception
-      assert exception.is_a? Pexels::APIError
-      assert_equal exception.message, 'Not Found'
+    error = assert_raises(Pexels::APIError) do
+      @client.videos['this-is-not-a-valid-id']
+    end
+    assert_equal 'Not Found', error.message
+  end
+
+  def test_invalid_orientation
+    error = assert_raises(ArgumentError) do
+      @client.photos.search('dog', orientation: 'foo')
+    end
+    assert_match '`orientation` must be one of', error.message
+  end
+
+  def test_invalid_size
+    error = assert_raises(ArgumentError) do
+      @client.photos.search('dog', size: 'foo')
+    end
+    assert_match '`size` must be one of', error.message
+  end
+
+  def test_search_filters
+    search_result = @client.videos.search('cat', size: :medium, orientation: :square)
+    assert_kind_of Pexels::VideoSet, search_result
+    assert search_result.videos.any?
   end
 end
