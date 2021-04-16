@@ -1,5 +1,9 @@
 # Change log
 
+## 0.3.0
+* Add support for photo and video search with filters.
+* Added `avg_color` attribute to `Photo` object.
+
 ## 0.2.1
 * Added `type`, `photo?` and `video?` helper methods to `Photo` and `Video` classes.
 
