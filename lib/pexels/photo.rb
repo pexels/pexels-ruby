@@ -4,8 +4,8 @@ class Pexels::Photo
               :height,
               :url,
               :user,
-              :src
-
+              :src,
+              :avg_color
 
   def initialize(attrs)
     @id = attrs.fetch('id')
@@ -18,6 +18,7 @@ class Pexels::Photo
       url: attrs.fetch('photographer_url')
     )
     @src = attrs.fetch('src')
+    @avg_color = attrs.fetch('avg_color')
 
   rescue KeyError => exception
     raise Pexels::MalformedAPIResponseError.new(exception)
