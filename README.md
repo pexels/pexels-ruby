@@ -30,6 +30,12 @@ client = Pexels::Client.new('your-access-key')
 client.photos.search('Cloud')
 ```
 
+### Search for photos with filters
+
+```ruby
+client.photos.search('Dog', color: :yellow, size: :large, orientation: :square)
+```
+
 ### Find a specific photo
 
 ```ruby
@@ -48,6 +54,12 @@ client.photos.curated
 
 ```ruby
 client.videos.search('waves')
+```
+
+### Search for videos with filters
+
+```ruby
+client.videos.search('Beach', size: :medium, orientation: :landscape)
 ```
 
 ### Find a specific photo
