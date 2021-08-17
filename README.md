@@ -83,6 +83,11 @@ Note: this is limited to collections belonging to the API user.
 ```ruby
 client.collections.all
 ```
+### List all featured collections.
+
+```ruby
+client.collections.featured.all
+```
 
 ### Get all media for a collection
 

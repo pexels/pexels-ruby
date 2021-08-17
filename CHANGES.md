@@ -1,5 +1,8 @@
 # Change log
 
+## 0.4.0
+* Add support for returning featured collections.
+
 ## 0.3.0
 * Add support for photo and video search with filters.
 * Added `avg_color` attribute to `Photo` object.
