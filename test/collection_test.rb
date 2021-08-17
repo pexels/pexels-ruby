@@ -27,6 +27,25 @@ class TestCollections < Minitest::Test
     assert_kind_of Pexels::CollectionSet, collection_with_params.prev_page
   end
 
+  def test_featured
+    collection = @client.collections.featured
+
+    assert_kind_of Pexels::CollectionSet, collection
+    assert_equal collection.per_page, 15
+    assert_equal collection.page, 1
+
+    assert collection.collections.is_a? Array
+    assert collection.collections.any?
+    assert collection.first.is_a? Pexels::Collection
+
+    collection_with_params = @client.collections.featured(per_page: 1, page: 2)
+    assert_equal collection_with_params.per_page, 1
+    assert_equal collection_with_params.page, 2
+    assert_equal collection_with_params.collections.length, 1
+    assert_kind_of Pexels::CollectionSet, collection_with_params.next_page
+    assert_kind_of Pexels::CollectionSet, collection_with_params.prev_page
+  end
+
   def test_get_collection_media
     collection = @client.collections[@collection.id]
     assert_kind_of Pexels::CollectionMediaSet, collection
