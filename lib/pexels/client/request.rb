@@ -3,13 +3,14 @@ require 'requests'
 module Pexels
   class Client
     class Request
-      attr_reader :api_key, :path, :method, :params
+      attr_reader :api_key, :path, :method, :params, :options
 
-      def initialize(api_key, path, method, params)
+      def initialize(api_key, path, method, params, options)
         @api_key = api_key
         @path = path
         @method = method
         @params = params
+        @options = options
       end
 
       def call
@@ -28,7 +29,8 @@ module Pexels
           method,
           url,
           params: params,
-          headers: headers
+          headers: headers,
+          options: options
         )
       end
 

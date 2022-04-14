@@ -107,4 +107,52 @@ class TestPhoto < Minitest::Test
     assert_kind_of Pexels::PhotoSet, search_result
     assert search_result.photos.any?
   end
+
+  def test_get_photo_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos[@photo.id, timeout: { open: 0.0000001 }]
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_get_photo_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos[@photo.id, timeout: { read: 0.0000001 }]
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_search_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos.search('test', timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_search_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos.search('test', timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_curated_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos.curated(timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_curated_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.photos.curated(timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
 end

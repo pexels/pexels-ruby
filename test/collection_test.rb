@@ -98,4 +98,52 @@ class TestCollections < Minitest::Test
     end
     assert error.message, 'Not Found'
   end
+
+  def test_get_collection_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections[@collection.id, timeout: { open: 0.0000001 }]
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_get_collection_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections[@collection.id, timeout: { read: 0.0000001 }]
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_all_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections.all(timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_all_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections.all(timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_featured_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections.featured(timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_featured_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.collections.featured(timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
 end
