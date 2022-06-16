@@ -99,4 +99,52 @@ class TestVideo < Minitest::Test
     assert_kind_of Pexels::VideoSet, search_result
     assert search_result.videos.any?
   end
+
+  def test_get_video_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos[@video.id, timeout: { open: 0.0000001 }]
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_get_video_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos[@video.id, timeout: { read: 0.0000001 }]
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_search_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos.search('cat', timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_search_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos.search('cat', timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
+
+  def test_featured_open_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos.popular(timeout: { open: 0.0000001 })
+    end
+
+    assert_equal 'execution expired', error.message
+  end
+
+  def test_featured_read_timeout
+    error = assert_raises Pexels::APIError do
+      @client.videos.popular(timeout: { read: 0.0000001 })
+    end
+
+    assert_equal 'Net::ReadTimeout', error.message
+  end
 end

@@ -19,8 +19,8 @@ module Pexels
       @collections ||= Pexels::Client::Collections.new(self)
     end
 
-    def request(path, method: 'GET', params: {})
-      request = Request.new(api_key, path, method, params)
+    def request(path, method: 'GET', params: {}, options: {})
+      request = Request.new(api_key, path, method, params, options)
       request.call.tap do |response|
         @ratelimit_remaining = response.ratelimit_remaining
       end
