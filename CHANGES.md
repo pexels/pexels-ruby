@@ -1,5 +1,11 @@
 # Change log
 
+## 0.6.0
+* Added `fps` to `Pexels::Video::File`.
+
+## 0.5.0
+* Expose timeout options
+
 ## 0.4.0
 * Add support for returning featured collections.
 
