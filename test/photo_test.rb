@@ -61,6 +61,7 @@ class TestPhoto < Minitest::Test
     assert_equal photo.user.id, @photo.user.id
     assert_equal photo.src, @photo.src
     assert_equal photo.avg_color, @photo.avg_color
+    assert_equal photo.alt, @photo.alt
 
     assert photo.photo?
     assert_equal photo.type, 'Photo'
